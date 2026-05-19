@@ -79,6 +79,10 @@ php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
 ### Run project
 
 ```bash
+
+git clone https://github.com/EvgenijDev/wb-api.git
+cd wb-api
+
 cp .env.example .env
 docker-compose up -d --build
 docker exec -it php php artisan key:generate
