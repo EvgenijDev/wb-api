@@ -34,6 +34,7 @@ SELECT COUNT(*) FROM sales;
 SELECT COUNT(*) FROM orders;
 SELECT COUNT(*) FROM stocks;
 SELECT COUNT(*) FROM incomes;
+
 ```
 
 ## 2. Local deployment
