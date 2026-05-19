@@ -70,7 +70,7 @@ php artisan import:wb stocks --from=2026-05-19
 php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
 ```
 
-## Docker setup
+## 3. Local deployment Docker setup
 
 ### Requirements
 - Docker
@@ -101,16 +101,13 @@ docker compose exec php php artisan import:wb stocks --from=2026-05-19
 # Импорт поступлений за период
 docker compose exec php php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
 ```
-# Подулючение к MySQL
+# Подключение к MySQL
 
-# SSH доступ
+## SSH доступ
 ```bash
 ssh checker@194.87.196.158
-```
 # Пароль: Kx9#mP2$vL7@nQ4&wR8
 
-# Подключение к MySQL
-```bash
 mysql -u wb_user -pStrongPassword123! wb_api
 
 SELECT COUNT(*) FROM sales;
