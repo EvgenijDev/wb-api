@@ -16,6 +16,7 @@ ssh checker@194.87.196.158
 # Перейти в папку проекта
 cd /var/www/wb-api
 
+# Импорт продаж за период
 php artisan import:wb sales --from=2026-01-01 --to=2026-01-31
 
 # Импорт заказов за период
@@ -56,6 +57,7 @@ php artisan key:generate
 
 php artisan migrate
 
+# Импорт продаж за период
 php artisan import:wb sales --from=2026-01-01 --to=2026-01-31
 
 # Импорт заказов за период
@@ -66,3 +68,30 @@ php artisan import:wb stocks --from=2026-05-19
 
 # Импорт поступлений за период
 php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
+```
+
+## Docker setup
+
+### Requirements
+- Docker
+- Docker Compose
+
+### Run project
+
+```bash
+cp .env.example .env
+docker-compose up -d --build
+docker exec -it php php artisan key:generate
+docker exec -it php php artisan migrate
+
+# Импорт заказов за период
+docker exec -it php php artisan import:wb orders --from=2026-05-01 --to=2026-05-18
+
+# Импорт продаж за период
+docker exec -it php php artisan import:wb sales --from=2026-01-01 --to=2026-01-31
+
+# Импорт остатков (текущий день)
+docker exec -it php php artisan import:wb stocks --from=2026-05-19
+
+# Импорт поступлений за период
+docker exec -it php php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
