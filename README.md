@@ -85,17 +85,35 @@ cd wb-api
 
 cp .env.example .env
 docker-compose up -d --build
-docker exec -it php php artisan key:generate
-docker exec -it php php artisan migrate
+docker compose exec php composer install
+docker compose exec php php artisan key:generate
+docker compose exec php php artisan migrate
 
 # Импорт заказов за период
-docker exec -it php php artisan import:wb orders --from=2026-05-01 --to=2026-05-18
+docker compose exec php php artisan import:wb orders --from=2026-05-01 --to=2026-05-18
 
 # Импорт продаж за период
-docker exec -it php php artisan import:wb sales --from=2026-01-01 --to=2026-01-31
+docker compose exec php php artisan import:wb sales --from=2026-01-01 --to=2026-01-31
 
 # Импорт остатков (текущий день)
-docker exec -it php php artisan import:wb stocks --from=2026-05-19
+docker compose exec php php artisan import:wb stocks --from=2026-05-19
 
 # Импорт поступлений за период
-docker exec -it php php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
+docker compose exec php php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
+```
+# Подулючение к MySQL
+
+# SSH доступ
+```bash
+ssh checker@194.87.196.158
+```
+# Пароль: Kx9#mP2$vL7@nQ4&wR8
+
+# Подключение к MySQL
+```bash
+mysql -u wb_user -pStrongPassword123! wb_api
+
+SELECT COUNT(*) FROM sales;
+SELECT COUNT(*) FROM orders;
+SELECT COUNT(*) FROM stocks;
+SELECT COUNT(*) FROM incomes;
