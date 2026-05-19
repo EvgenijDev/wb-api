@@ -2,6 +2,8 @@
 
 Проект для получения данных о продажах, заказах, остатках и доходах из Wildberries API.
 
+## 1. Server (VPS) deployment
+
 ## Доступ к серверу
 
 ```bash
@@ -22,7 +24,7 @@ php artisan import:wb orders --from=2026-01-01 --to=2026-01-31
 # Импорт остатков (текущий день)
 php artisan import:wb stocks --from=2026-05-19
 
-# Импорт доходов за период
+# Импорт поступлений за период
 php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
 
 # Подключение к MySQL
@@ -32,3 +34,34 @@ SELECT COUNT(*) FROM sales;
 SELECT COUNT(*) FROM orders;
 SELECT COUNT(*) FROM stocks;
 SELECT COUNT(*) FROM incomes;
+```
+
+## 2. Local deployment
+
+### Requirements
+- PHP 8.1+
+- Composer
+- MySQL 8+
+- Git
+
+```bash
+git clone https://github.com/EvgenijDev/wb-api.git
+cd wb-api
+
+composer install
+
+cp .env.example .env
+php artisan key:generate
+
+php artisan migrate
+
+php artisan import:wb sales --from=2026-01-01 --to=2026-01-31
+
+# Импорт заказов за период
+php artisan import:wb orders --from=2026-01-01 --to=2026-01-31
+
+# Импорт остатков (текущий день)
+php artisan import:wb stocks --from=2026-05-19
+
+# Импорт поступлений за период
+php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
