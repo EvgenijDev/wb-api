@@ -22,7 +22,7 @@ php artisan import:wb orders --from=2026-01-01 --to=2026-01-31
 # Импорт остатков (текущий день)
 php artisan import:wb stocks --from=2026-05-19
 
-# Импорт доходов за период
+# Импорт поступлений за период
 php artisan import:wb incomes --from=2026-01-01 --to=2026-01-31
 
 # Подключение к MySQL
